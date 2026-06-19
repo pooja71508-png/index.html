@@ -4,153 +4,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiger365.pro UPI Payment</title>
+<title>Tiger365.pro Payment</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:'Segoe UI',sans-serif;
-    background:
-    radial-gradient(circle at top,#16213e,#0a0f1f 40%,#050816 100%);
-    overflow:hidden;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+radial-gradient(circle at top,#1b2a49,#0b1020 50%,#050816);
+padding:20px;
 }
 
-body::before{
-    content:'';
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#00ffff;
-    filter:blur(200px);
-    opacity:.15;
-    top:-150px;
-    left:-150px;
+.card{
+width:100%;
+max-width:420px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+padding:25px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,255,255,.15);
 }
 
-body::after{
-    content:'';
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#ff00ff;
-    filter:blur(200px);
-    opacity:.15;
-    bottom:-150px;
-    right:-150px;
-}
-
-.container{
-    width:90%;
-    max-width:420px;
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:25px;
-    padding:30px;
-    text-align:center;
-    box-shadow:
-    0 0 20px rgba(0,255,255,.25),
-    0 0 60px rgba(0,255,255,.08);
-}
-
-h1{
-    color:#00ffff;
-    font-size:32px;
-    letter-spacing:3px;
-    text-shadow:0 0 15px #00ffff;
+.logo{
+font-size:32px;
+font-weight:700;
+color:#00ffff;
+text-shadow:0 0 15px #00ffff;
+margin-bottom:10px;
 }
 
 .subtitle{
-    color:white;
-    margin-top:10px;
-    margin-bottom:25px;
-    font-size:14px;
+color:#ddd;
+margin-bottom:20px;
+font-size:14px;
 }
 
 input{
-    width:100%;
-    padding:15px;
-    border:none;
-    outline:none;
-    border-radius:15px;
-    background:rgba(255,255,255,.08);
-    color:white;
-    font-size:18px;
-    text-align:center;
-    border:1px solid rgba(0,255,255,.3);
-}
-
-input::placeholder{
-    color:#cfcfcf;
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid rgba(0,255,255,.3);
+background:rgba(255,255,255,.08);
+color:#fff;
+font-size:18px;
+text-align:center;
+outline:none;
 }
 
 button{
-    width:100%;
-    border:none;
-    border-radius:15px;
-    padding:15px;
-    margin-top:15px;
-    cursor:pointer;
-    font-size:17px;
-    font-weight:700;
-    transition:.3s;
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+margin-top:12px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
 }
 
 .generate{
-    background:linear-gradient(135deg,#00ffff,#0088ff);
-    color:white;
-    box-shadow:0 0 20px rgba(0,255,255,.5);
+background:linear-gradient(135deg,#00ffff,#008cff);
+color:white;
 }
 
 .pay{
-    background:linear-gradient(135deg,#ff00ff,#7b00ff);
-    color:white;
-    box-shadow:0 0 20px rgba(255,0,255,.5);
+background:linear-gradient(135deg,#ff00ff,#7a00ff);
+color:white;
 }
 
-button:hover{
-    transform:translateY(-2px);
+.copy{
+background:linear-gradient(135deg,#ff9900,#ff5500);
+color:white;
 }
 
 #qrcode{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
+margin-top:25px;
+display:flex;
+justify-content:center;
 }
 
 #qrcode img{
-    padding:12px;
-    background:white;
-    border-radius:20px;
-    box-shadow:0 0 25px rgba(0,255,255,.7);
+background:white;
+padding:12px;
+border-radius:18px;
+}
+
+.upi{
+margin-top:15px;
+color:#fff;
+font-size:14px;
+word-break:break-all;
 }
 
 .footer{
-    margin-top:20px;
-    color:#aaa;
-    font-size:12px;
+margin-top:15px;
+font-size:12px;
+color:#999;
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 
-<h1>BHARAT</h1>
+<div class="logo">Tiger365.pro</div>
 
 <div class="subtitle">
 ⚡ Instant UPI Payment Gateway ⚡
@@ -163,6 +134,14 @@ Generate QR
 </button>
 
 <div id="qrcode"></div>
+
+<div class="upi">
+UPI ID: pooja71508-1@okaxis
+</div>
+
+<button class="copy" onclick="copyUPI()">
+Copy UPI ID
+</button>
 
 <button class="pay" onclick="payNow()">
 Pay Now
@@ -177,7 +156,7 @@ Secure UPI Payment
 <script>
 
 const upiId = "pooja71508-1@okaxis";
-const payeeName = "BHARAT";
+const payeeName = "Tiger365.pro";
 
 let paymentLink = "";
 
@@ -185,8 +164,8 @@ function generateQR(){
 
 let amount = document.getElementById("amount").value;
 
-if(amount == "" || amount <= 0){
-alert("Enter Valid Amount");
+if(!amount || amount <= 0){
+alert("Enter valid amount");
 return;
 }
 
@@ -196,22 +175,31 @@ paymentLink =
 document.getElementById("qrcode").innerHTML = "";
 
 new QRCode(document.getElementById("qrcode"),{
-text: paymentLink,
+text:paymentLink,
 width:250,
 height:250
 });
-
 }
 
 function payNow(){
 
-if(paymentLink == ""){
+if(paymentLink===""){
 alert("Generate QR First");
 return;
 }
 
-window.location.href = paymentLink;
+const a = document.createElement("a");
+a.href = paymentLink;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+}
 
+function copyUPI(){
+
+navigator.clipboard.writeText(upiId);
+
+alert("UPI ID Copied");
 }
 
 </script>
